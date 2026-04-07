@@ -30,7 +30,7 @@ Copy from `templates/portals.example.yml` and customize:
 
 1. **title_filter.positive**: Keywords matching your target roles
 2. **title_filter.negative**: Tech stacks or domains to exclude
-3. **search_queries**: WebSearch queries for job boards (Ashby, Greenhouse, Lever)
+3. **search_queries**: web_search queries for job boards (Ashby, Greenhouse, Lever)
 4. **tracked_companies**: Companies to check directly
 
 ## CV Template (templates/cv-template.html)
@@ -51,7 +51,9 @@ The negotiation section provides frameworks for salary discussions. Replace the 
 
 ## Hooks (Optional)
 
-Career-ops can integrate with external systems via Claude Code hooks. Example hooks:
+Career-ops can integrate with external systems via hooks. Example hooks:
+
+**Claude Code** — save in `.claude/settings.json`:
 
 ```json
 {
@@ -66,7 +68,7 @@ Career-ops can integrate with external systems via Claude Code hooks. Example ho
 }
 ```
 
-Save hooks in `.claude/settings.json`.
+**Copilot CLI** — configure MCP servers and extensions in `.github/copilot/mcp.json` and `.github/extensions/`.
 
 ## States (templates/states.yml)
 

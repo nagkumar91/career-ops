@@ -4,9 +4,11 @@
 
 This system was built and used by [santifer](https://santifer.io) to evaluate 740+ job offers, generate 100+ tailored CVs, and land a Head of Applied AI role. The archetypes, scoring logic, negotiation scripts, and proof point structure all reflect his specific career search in AI/automation roles.
 
+This fork is adapted for **GitHub Copilot CLI** (which natively reads `CLAUDE.md` as its instructions file). It also works with Claude Code and other agents that follow the same convention.
+
 The portfolio that goes with this system is also open source: [cv-santiago](https://github.com/santifer/cv-santiago).
 
-**It will work out of the box, but it's designed to be made yours.** If the archetypes don't match your career, the modes are in the wrong language, or the scoring doesn't fit your priorities -- just ask. You (Claude) can edit the user's files. The user says "change the archetypes to data engineering roles" and you do it. That's the whole point.
+**It will work out of the box, but it's designed to be made yours.** If the archetypes don't match your career, the modes are in the wrong language, or the scoring doesn't fit your priorities -- just ask. The AI agent can edit the user's files. The user says "change the archetypes to data engineering roles" and the agent does it. That's the whole point.
 
 ## Data Contract (CRITICAL)
 
@@ -24,7 +26,7 @@ There are two layers. Read `DATA_CONTRACT.md` for the full list.
 
 ## Update Check
 
-On the first message of each session, run the update checker silently:
+On the first message of each session, run the update checker silently (works with both Copilot CLI and Claude Code):
 
 ```bash
 node update-system.mjs check
@@ -43,7 +45,7 @@ To rollback: `node update-system.mjs rollback`
 
 ## What is career-ops
 
-AI-powered job search automation built on Claude Code: pipeline tracking, offer evaluation, CV generation, portal scanning, batch processing.
+AI-powered job search automation built on Copilot CLI / Claude Code: pipeline tracking, offer evaluation, CV generation, portal scanning, batch processing.
 
 ### Main Files
 
@@ -145,7 +147,11 @@ If the user accepts, use the `/loop` or `/schedule` skill (if available) to set 
 
 ### Personalization
 
-This system is designed to be customized by YOU (Claude). When the user asks you to change archetypes, translate modes, adjust scoring, add companies, or modify negotiation scripts -- do it directly. You read the same files you use, so you know exactly what to edit.
+This system is designed to be customized by YOU (the AI agent — Copilot CLI, Claude Code, or any compatible agent). When the user asks you to change archetypes, translate modes, adjust scoring, add companies, or modify negotiation scripts -- do it directly. You read the same files you use, so you know exactly what to edit.
+
+**Skill / Extension paths:**
+- Claude Code: `.claude/skills/career-ops/SKILL.md`
+- Copilot CLI: `.github/extensions/career-ops/extension.mjs`
 
 **Common customization requests:**
 - "Change the archetypes to [backend/frontend/data/devops] roles" → edit `modes/_shared.md`
@@ -170,7 +176,7 @@ Default modes are in `modes/` (English). Additional language-specific modes are 
 
 ### Skill Modes
 
-| If the user... | Mode |
+| If the user… (Copilot CLI / Claude Code) | Mode |
 |----------------|------|
 | Pastes JD or URL | auto-pipeline (evaluate + report + PDF + tracker) |
 | Asks to evaluate offer | `oferta` |
@@ -207,18 +213,18 @@ Default modes are in `modes/` (English). Additional language-specific modes are 
 
 ## Offer Verification -- MANDATORY
 
-**NEVER trust WebSearch/WebFetch to verify if an offer is still active.** ALWAYS use Playwright:
+**NEVER trust web_search/web_fetch to verify if an offer is still active.** ALWAYS use Playwright:
 1. `browser_navigate` to the URL
 2. `browser_snapshot` to read content
 3. Only footer/navbar without JD = closed. Title + description + Apply = active.
 
-**Exception for batch workers (`claude -p`):** Playwright is not available in headless pipe mode. Use WebFetch as fallback and mark the report header with `**Verification:** unconfirmed (batch mode)`. The user can verify manually later.
+**Exception for batch workers (`copilot -p`):** Playwright is not available in headless pipe mode. Use `web_fetch` as fallback and mark the report header with `**Verification:** unconfirmed (batch mode)`. The user can verify manually later.
 
 ---
 
 ## Stack and Conventions
 
-- Node.js (mjs modules), Playwright (PDF + scraping), YAML (config), HTML/CSS (template), Markdown (data)
+- Copilot CLI (or Claude Code) as the AI agent, Node.js (mjs modules), Playwright (PDF + scraping), YAML (config), HTML/CSS (template), Markdown (data)
 - Scripts in `.mjs`, configuration in YAML
 - Output in `output/` (gitignored), Reports in `reports/`
 - JDs in `jds/` (referenced as `local:jds/{file}` in pipeline.md)

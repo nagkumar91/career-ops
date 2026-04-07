@@ -4,7 +4,7 @@
 # Strategy (3 levels):
 #   1. Playwright → careers_url of each company (real-time, reliable)
 #   2. Greenhouse API → structured JSON (fast, Greenhouse-only)
-#   3. WebSearch with site: filters (broad discovery, may be stale)
+#   3. web_search with site: filters (broad discovery, may be stale)
 #
 # IMPORTANT: Each company in tracked_companies MUST have careers_url.
 #
@@ -96,7 +96,7 @@ title_filter:
     - "Director"
 
 # -- Search queries --
-# Each query triggers a WebSearch. Use site: to filter by portal.
+# Each query triggers a web_search. Use site: to filter by portal.
 # The scanner extracts title, URL, and company from results.
 
 search_queries:
