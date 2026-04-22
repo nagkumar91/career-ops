@@ -1,6 +1,6 @@
 # Contributing to Career-Ops
 
-Thanks for your interest in contributing! Career-Ops is built with Claude Code, and you can use it for development too.
+Thanks for your interest in contributing! Career-Ops is built with Claude Code and Copilot CLI, and you can use either for development too.
 
 ## Before Submitting a PR
 

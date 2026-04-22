@@ -100,7 +100,7 @@ Wenn der Kandidat eine Live-Demo / ein Dashboard hat (`profile.yml` prüfen), in
 <!-- [ANPASSEN] Recherchiere Vergütungsspannen für deine Zielrollen und passe die Werte an -->
 
 **Allgemeine Hinweise:**
-- WebSearch für aktuelle Marktdaten (Glassdoor, Levels.fyi, Kununu, Gehalt.de, StepStone-Reports)
+- web_search für aktuelle Marktdaten (Glassdoor, Levels.fyi, Kununu, Gehalt.de, StepStone-Reports)
 - Nach Rollentitel framen, nicht nach Skills — Titel definieren die Gehaltsbänder
 - Freelance-Sätze in DACH liegen in der Regel 30-60% über dem Brutto-Stundensatz einer Festanstellung (Sozialversicherung, Urlaub, Krankheit, Akquise, Steuerberater)
 - Geo-Arbitrage funktioniert in Remote-Rollen: niedrigere Lebenshaltungskosten = besseres Netto
@@ -179,7 +179,7 @@ In deutschen Stellenanzeigen und Vertragsverhandlungen tauchen Begriffe auf, die
 1b. **Bei der ersten Bewertung jeder Session:** `node cv-sync-check.mjs` per Bash ausführen. Bei Warnungen den Kandidaten informieren, bevor weitergearbeitet wird
 2. Den Rollen-Archetyp erkennen und das Framing anpassen
 3. Beim Matching exakte Zeilen aus dem Lebenslauf zitieren
-4. WebSearch für Vergütungs- und Firmendaten nutzen
+4. web_search für Vergütungs- und Firmendaten nutzen
 5. Nach jeder Bewertung im Tracker eintragen
 6. Inhalte in der Sprache der Stellenanzeige erzeugen (Deutsch, wenn die Anzeige deutsch ist; Englisch sonst)
 7. Direkt und konkret sein — keine Floskeln
@@ -192,8 +192,8 @@ In deutschen Stellenanzeigen und Vertragsverhandlungen tauchen Begriffe auf, die
 
 | Tool | Einsatz |
 |------|---------|
-| WebSearch | Vergütungs-Recherche, Trends, Unternehmenskultur, LinkedIn-Kontakte, Fallback für Stellenanzeigen |
-| WebFetch | Fallback, um Stellenanzeigen aus statischen Seiten zu extrahieren |
+| web_search | Vergütungs-Recherche, Trends, Unternehmenskultur, LinkedIn-Kontakte, Fallback für Stellenanzeigen |
+| web_fetch | Fallback, um Stellenanzeigen aus statischen Seiten zu extrahieren |
 | Playwright | Prüfen, ob Stellenanzeigen noch aktiv sind (browser_navigate + browser_snapshot), Stellenanzeigen aus SPAs extrahieren. **KRITISCH: NIEMALS 2+ Agenten parallel mit Playwright starten — sie teilen sich eine Browser-Instanz** |
 | Read | cv.md, article-digest.md, cv-template.html |
 | Write | Temporäres HTML für PDF, applications.md, Reports .md |

@@ -3,10 +3,11 @@
 ## System Overview
 
 ```
-                    ┌─────────────────────────────────┐
-                    │         Claude Code Agent        │
-                    │   (reads CLAUDE.md + modes/*.md) │
-                    └──────────┬──────────────────────┘
+                    ┌──────────────────────────────────────┐
+                    │     Copilot CLI / Claude Code Agent   │
+                    │  (reads CLAUDE.md + modes/*.md +      │
+                    │   .github/extensions/)                 │
+                    └──────────┬───────────────────────────┘
                                │
             ┌──────────────────┼──────────────────────┐
             │                  │                       │
@@ -17,7 +18,7 @@
             │                  │                       │
             │           ┌──────▼──────┐          ┌────▼─────┐
             │           │ pipeline.md │          │ N workers│
-            │           │ (URL inbox) │          │ (claude -p)
+            │           │ (URL inbox) │          │ (copilot -p)
             │           └─────────────┘          └────┬─────┘
             │                                          │
      ┌──────▼──────────────────────────────────────────▼──────┐
@@ -37,13 +38,13 @@
 ## Evaluation Flow (Single Offer)
 
 1. **Input**: User pastes JD text or URL
-2. **Extract**: Playwright/WebFetch extracts JD from URL
+2. **Extract**: Playwright/web_fetch extracts JD from URL
 3. **Classify**: Detect archetype (1 of 6 types)
 4. **Evaluate**: 6 blocks (A-F):
    - A: Role summary
    - B: CV match (gaps + mitigation)
    - C: Level strategy
-   - D: Comp research (WebSearch)
+   - D: Comp research (web_search)
    - E: CV personalization plan
    - F: Interview prep (STAR stories)
 5. **Score**: Weighted average across 10 dimensions (1-5)
@@ -56,14 +57,14 @@
 The batch system processes multiple offers in parallel:
 
 ```
-batch-input.tsv    →  batch-runner.sh  →  N × claude -p workers
+batch-input.tsv    →  batch-runner.sh  →  N × copilot -p workers
 (id, url, source)     (orchestrator)       (self-contained prompt)
                            │
                     batch-state.tsv
                     (tracks progress)
 ```
 
-Each worker is a headless Claude instance (`claude -p`) that receives the full `batch-prompt.md` as context. Workers produce:
+Each worker is a headless agent instance (`copilot -p`) that receives the full `batch-prompt.md` as context. Workers produce:
 - Report .md
 - PDF
 - Tracker TSV line

@@ -46,7 +46,7 @@ Abschnitt **Lücken (Gaps)** mit Mitigationsstrategie für jede einzelne. Pro Ga
 
 ## Block D — Vergütung und Nachfrage
 
-WebSearch nutzen für:
+web_search nutzen für:
 - Aktuelle Gehälter für die Rolle (Glassdoor, Levels.fyi, Kununu, Gehalt.de, StepStone-Reports)
 - Vergütungs-Reputation des Unternehmens (Kununu, Glassdoor)
 - Nachfrage-Trend für die Rolle im DACH-Markt

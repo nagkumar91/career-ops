@@ -2,9 +2,10 @@
 
 ## Prerequisites
 
-- [Claude Code](https://claude.ai/code) installed and configured
+- [Claude Code](https://claude.ai/code) or [Copilot CLI](https://githubnext.com/projects/copilot-cli) installed and configured
 - Node.js 18+ (for PDF generation and utility scripts)
 - (Optional) Go 1.21+ (for the dashboard TUI)
+- (Optional) Playwright MCP server — for portal scanning via Copilot CLI, configure the Playwright MCP server in your `.github/copilot/mcp.json`
 
 ## Quick Start (5 steps)
 
@@ -44,10 +45,12 @@ Edit `portals.yml`:
 
 ### 5. Start using
 
-Open Claude Code in this directory:
+Open your AI agent in this directory:
 
 ```bash
-claude
+copilot   # Copilot CLI
+# or
+claude    # Claude Code
 ```
 
 Then paste a job offer URL or description. Career-ops will automatically evaluate it, generate a report, create a tailored PDF, and track it.
